@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  mcpo:
+    image: ghcr.io/cr-zhichen/mcpo-proxy:latest
+    volumes:
+      - ./config.json:/app/config.json
+    ports:
+      - "8000:8000"
+    command: ["mcpo", "--config", "/app/config.json"]
+    restart: unless-stopped
