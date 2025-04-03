@@ -32,68 +32,19 @@ docker-compose up -d
 docker-compose logs -f
 ```
 
-### 健康检查
-
-```bash
-curl http://localhost:8000/health
-```
-
 ## 配置
 
 修改`config.json`文件配置MCP服务器，示例配置：
 
 ```json
 {
-  "servers": [
-    {
-      "name": "example-server",
-      "url": "http://example.com/mcp"
+    "mcpServers": {
+        "fetch": {
+            "command": "uvx",
+            "args": [
+                "mcp-server-fetch"
+            ]
+        }
     }
-  ]
 }
 ```
-
-## 开发环境搭建
-
-1. 安装Python 3.8+
-2. 安装依赖：
-
-```bash
-pip install -r requirements.txt
-```
-
-3. 启动开发服务器：
-
-```bash
-python main.py
-```
-
-## API文档
-
-### 获取MCP服务器列表
-
-```bash
-GET /api/servers
-```
-
-### 执行fetch请求
-
-```bash
-POST /api/fetch
-{
-  "server": "server-name",
-  "resource": "resource-uri"
-}
-```
-
-## 贡献指南
-
-欢迎提交Pull Request。请确保：
-
-- 代码符合PEP8规范
-- 包含必要的单元测试
-- 更新相关文档
-
-## 许可证
-
-本项目使用 [MIT License](LICENSE)。
